@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+
+%% preamble: Keep it clean; only include those you need
+\usepackage{amsmath}
+\usepackage[margin = 1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{natbib}
+
+% for space filling
+\usepackage{lipsum}
+% highlighting hyper links
+\usepackage[colorlinks=true, citecolor=blue]{hyperref}
+
+
+%% meta data
+
+\title{Statistical Properties of Loss Functions}
+\author{Ge Li\\
+  Department of Statistics\\
+  University of Connecticut
+}
+
+\begin{document}
+\maketitle
+
+
+\paragraph{Introduction}
+Machine learning has revolutionized numerous fields, from computer vision to natural language processing. Central to its success is optimizing loss functions that serve as proxies for performance and guide the iterative refinement of model parameters. As such, understanding the statistical properties of these loss functions is paramount. Not only do they define the optimization landscape for algorithms, but they also possess underlying implications about model assumptions, robustness, and generalization. The choice of a loss function in machine learning is not arbitrary. It inherently captures the task's objectives, making certain assumptions about the data's nature.
+Moreover, the statistical characteristics of a loss function can influence the efficiency of optimization algorithms and the reliability of model predictions. Understanding these properties becomes crucial as models are deployed in critical applications like healthcare, finance, and autonomous driving, where nuanced differences in loss functions can lead to vastly different outcomes. Historically, researchers have dabbled with various loss functions, be it mean squared error for regression tasks or cross-entropy for classification. Theoretical insights on their convexity, differentiability, and robustness against outliers have been provided. More recently, with the advent of deep learning, custom losses tailored to specific applications have emerged. These are often combined with traditional losses to cater to complex objectives, like multi-task learning or adversarial training. Yet, a comprehensive statistical understanding of these newer loss functions still needs to be discovered. This paper embarks on a detailed exploration of the statistical underpinnings of both conventional and novel loss functions. We aim to bridge the gap between their mathematical formulations and empirical performances by delving deep into their statistical behaviors. We question: Why are specific loss functions more resilient to noisy data? How do their statistical properties align with the assumptions made by machine learning models? And how can we leverage this knowledge to design more effective and reliable models?
+
+
+\paragraph{Data}
+Our study employs the renowned MNIST database, a staple in the machine learning and computer vision communities. Originally introduced by LeCun et al. in their work on gradient-based learning applied to document recognition, the MNIST database serves as a repository for handwritten digits~\citep{mnist_source}. It encompasses a training set of 60,000 examples alongside a test set with an additional 10,000 examples. The database itself is derived from the larger NIST Special Database 3 and Special Database 1, which respectively contains handwritten digits from employees of the United States Census Bureau and high school students.
+
+To ensure consistency and to address potential variances in handwritten styles, the digits within the MNIST dataset have undergone size normalization and centering within a fixed-size image. The original black and white images from NIST were meticulously size-normalized to snugly fit within a 20x20 pixel boundary while retaining their original aspect ratio. Consequently, the images feature grey levels, an artifact of the anti-aliasing method leveraged by the normalization procedure. For the ease of application in various algorithms and models, these images were subsequently centered in a 28x28 pixel framework by determining the center of mass of the pixels and adjusting the image to situate this central point at the heart of the 28x28 canvas. For more detailed information on the MNIST database, readers are referred to its official documentation~\citep{mnist_source}.
+
+\paragraph{Research Design and Methods}
+To obtain a thorough understanding of the impact of different loss functions, we adopt an empirical approach centered around the MNIST dataset.
+
+\textbf{Model Selection}: Our primary tool of choice is the Convolutional Neural Network (CNN), given its widespread adoption and effectiveness for image classification tasks. We'll use a standardized architecture to ensure comparability across different loss functions.
+
+\textbf{Training Across Loss Functions}: With the chosen model, we proceed to train it using a variety of loss functions. Both traditional losses like mean squared error and cross-entropy, as well as more recent custom loss functions, will be employed. Performance metrics, such as accuracy, precision, recall, F1-score, and AUC-ROC, will be systematically recorded for each loss function.
+
+\textbf{Loss Landscape Exploration}: To provide visual insights into the optimization landscape, we plan on leveraging techniques like filter normalization. Such visualizations can elucidate challenges tied to specific loss functions and hint at potential convergence issues.
+
+\textbf{Hyperparameter Sensitivity Analysis}: A side-by-side analysis will be performed to ascertain how different loss functions react to variations in model hyperparameters, such as learning rates and regularization strengths.
+
+\textbf{Statistical Validation}: Subsequent statistical tests will then confirm if observed differences in model performance, under different loss functions, are indeed statistically significant.
+
+Cite relevant references below, will add more in the future:
+Capsule research direction of Geoffrey Hinton and colleagues~\citep[see, e.g.,][]{byerly2020norouting}.
+
+
+\paragraph{Discussion}
+The most challenge part is the coding part for me since I only have one experience in building deep learning algorithm. I may not successfully perform the coding for the experiments. 
+The limitations are: 
+First, the results are based on the MNIST dataset, which is a well-understood and relatively simple dataset. Findings might differ when applied to more complex datasets or those from different domains.
+Second, Given the focus on image classification, findings may not be directly transferable to other machine learning tasks like regression, clustering, or sequence prediction.
+At last, While the paper delves into various loss functions, it's improbable to cover every possible loss function, especially those tailored for niche applications. I may not cover all the loss functions.
+If something unexpected happen, I will turn this paper into a math and statistics discussion about the loss function and its application history in machine learning which I am more familiar with.
+
+\bibliography{refs}
+\bibliographystyle{plainnat}
+
+
+\end{document}
